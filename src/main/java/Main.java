@@ -10,66 +10,43 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         try (var mongoClient = MongoClients.create()) {
-            // statements
 
-//            getDbList(mongoClient);
             var database = mongoClient.getDatabase("syn");
 
-//            getTableList(database);
-
-            // test
             var todoCollection = database.getCollection("todo");
-            /**
-             * Создание документа
-             */
+
             addDoc(todoCollection);
 
             resOut(todoCollection);
 
-            /**
-             * Изменение документов
-             */
 //            changeDoc(todoCollection);
 
-            /**
-             * Поиск документов и вывод результатов
-             */
-            resOut(todoCollection);
-            /**
-             * Удаление документов
-             */
-            todoCollection.deleteOne(new Document("_id", new ObjectId("659fcb48e24805191473dc6a")));
+//            resOut(todoCollection);
 
-            resOut(todoCollection);
+//            todoCollection.deleteOne(new Document("_id", new ObjectId("659fcb48e24805191473dc6a")));
+//
+//            resOut(todoCollection);
 
         }
 
     }
+
     private static void addDoc(MongoCollection<Document> todoCollection) {
-        /**
-         * Создать документ
-         */
+
         var todoDocument = new Document(Map.of(
                 "_id", new ObjectId(),
                 "task", "Drink some coffee",
                 "dateCreated", LocalDateTime.now(),
                 "done", false));
-/**
- * Добавить документ в таблицу
- */
+
         todoCollection.insertOne(todoDocument);
     }
 
     private static void changeDoc(MongoCollection<Document> todoCollection) {
-
         todoCollection.updateOne(new Document(
-
-                        // поиск по подобию
-                        "_id", new ObjectId("659fcb48e24805191473dc6a")),
-
-                // обновление
+         "_id", new ObjectId("659fcb48e24805191473dc6a")),
                 new Document(Map.of(
                         "$set", new Document("done", true),
                         "$currentDate", new Document("dateDone", true),

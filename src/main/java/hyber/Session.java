@@ -1,9 +1,11 @@
 package hyber;
 
-import com.mongodb.internal.validator.CollectibleDocumentFieldNameValidator;
 import models.Contact;
+import models.User;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
 
-import java.lang.module.Configuration;
 
 public class Session {
     private static SessionFactory sessionFactory;
@@ -22,6 +24,7 @@ public class Session {
             } catch (Exception e) {
                 System.out.println("Исключение! " + e);
             }
-            return sessionFactory;
         }
+        return sessionFactory;
     }
+}
