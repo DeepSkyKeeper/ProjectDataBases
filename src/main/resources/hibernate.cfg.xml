@@ -11,6 +11,7 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
         <property name="hibernate.highlight.sql">true</property>
+        <property name="hibernate.connection.characterEncoding">utf8</property>
 <!--    property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL94Dialect</property-->
 
 
